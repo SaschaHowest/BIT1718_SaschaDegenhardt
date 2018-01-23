@@ -1,0 +1,45 @@
+#--------------------------------------------------------#
+# QUESTION 8: normalise up to 3NF (PhD student projects) #
+#--------------------------------------------------------#
+
+
+UNF:	Projects(personnel_number, name, DOB, lab_code, lab_name, research_code, research_desc, research_super)
+
+-> alle onderdelen van de data in 1 table
+-> personnel_number is Primary Key
+
+----------
+
+1NF:	Personnel(personnel_number, name, DOB)							#personnel_number is hier de Primary Key!!
+	Lab(lab_code, lab_name)									#lab_code is hier de Primary Key!!
+	Project(research_code, research_descr, research_super, lab_code, personnel_number))	#research_code is hier Primary Key!!
+
+-> Bij 1NF moeten alle set van data (of herhaalde data) samen gestoken worden. Ik heb dus 3 aparte tabellen gemaakt.
+	-> Een eerste om alle gegevens van het personeel bij te houden.
+	-> Een tweede om alle gegevens van het labo bij te houden.
+	-> Een derde om alle gegevens van het research project bij te houden.
+
+----------
+
+2NF:	Personnel(personnel_number, name, DOB)
+	Lab(lab_code, lab_name)
+	Project(research_code, research_desc, research_super, lab_code, personnel_number)
+
+-> Bij 2NF moeten alle non-prime elementen afhankelijk zijn van de volledige Primary Key
+-> In dit geval zijn in de 3 tabellen alle non-prime elementen afhankelijk van de volledige Primary Key dus is de 2NF vorm
+gelijk aan de 1NF vorm.
+
+----------
+
+3NF:	Personnel(personnel_number,name,DOB)
+	Lab(labo_code, lab_name)
+	Project(research_code, research_desc, research_super, labo_code, personnel_number)
+
+-> Bij 3NF moeten alle non-prime elementen NIET afhankelijk zijn van een ander non-prime element.
+-> In dit geval zijn in de 3 tabellen alle non-prime elementen niet afhankelijk van een ander non-prime element dus is de 3NF
+vorm bij deze ook gelijk aan de 2NF vorm.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+  
+
