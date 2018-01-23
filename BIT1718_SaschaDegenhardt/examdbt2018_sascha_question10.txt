@@ -1,0 +1,82 @@
+#////////////////////////////////////////////////
+#	Examen Database Technology: Vraag 10	/	
+#		MySQL querries			/		
+#////////////////////////////////////////////////
+
+
+1: Give the name and length of the smallest gene in the genome.
+
++-----------+-------------+
+| gene_name | Gene_length |
++-----------+-------------+
+| TRDD1     |           8 |
++-----------+-------------+
+
+= Het TRDD1 gene is het kleinste gen met een lengte van 8bp.
+
+QUERY: SELECT gene_name, (seq_region_end-seq_region_start+1) AS Gene_length FROM gene ORDER BY Gene_length asc LIMIT 1;
+
+
+------------------------------
+
+2: What is the name of the gene with the most transcripts? What is the number of transcript of this gene?
+
++-----------+--------------------+
+| gene_name | Amount_transcripts |
++-----------+--------------------+
+| NDRG2     |                 80 |
++-----------+--------------------+
+
+= Het NDRG2 gene heeft het meeste transcripts: 80.
+
+QUERY: SELECT gene_name, count(transcript.gene_id) AS Amount_transcripts FROM gene JOIN transcript ON gene.gene_id=transcript.gene_id GROUP BY transcript.gene_id ORDER BY Amount_transcripts desc LIMIT 1;
+
+
+-------------------------------
+
+3: Give the name of the chromosome with the second most genes that tell somthing about cancer. What is the number of exons of this chromosome?
+
++------------+--------+
+| chromosome | Amount |
++------------+--------+
+| X          |     23 |
++------------+--------+
+
+= Het chromosome met de meeste genen die iets zeggen over "Cancer" is het X-chromosoom waar 23 genen "Cancer" in de description hebben.
+
+QUERY: SELECT chromosome, count(gene_id) AS Amount FROM gene WHERE description like "%cancer%" GROUP BY chromosome ORDER BY Amount desc LIMIT 1;
+
++------------+---------------------+
+| chromosome | count(exon.exon_id) |
++------------+---------------------+
+| X          |               37584 |
++------------+---------------------+
+
+= Het X chromosome heeft 37584 exonen. 
+
+QUERY: SELECT chromosome, count(exon.exon_id) FROM gene JOIN transcript ON gene.gene_id=transcript.gene_id JOIN exon_transcript ON transcript.transcript_id=exon_transcript.transcript_id JOIN exon ON exon_transcript.exon_id=exon.exon_id WHERE chromosome = "X" GROUP BY chromosome;
+
+
+------------------------------
+
+4: Give the number of rows from the exon table and do the same for the exon_transcript table. Explain why there is a difference in number of rows.
+
++--------+
+| Exon   |
++--------+
+| 642590 |
++--------+
+
+QUERY: SELECT count(*) AS Exon from exon;
+
++-----------------+
+| Exon_transcript |
++-----------------+
+|         1178393 |
++-----------------+
+
+QUERY: SELECT count(*) AS Exon_transcript from exon_transcript;
+
+WHY: Omdat 1 exon meerdere transcripten kan hebben.
+
+

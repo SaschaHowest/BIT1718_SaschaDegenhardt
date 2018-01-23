@@ -1,0 +1,37 @@
+#////////////////////////////////////////////////////////////////
+#		Exam Database technology: question 11		/
+#////////////////////////////////////////////////////////////////
+
+
+1: Give the number of medicines taken with a lozenge. 
+
+= ?????????
+
+QUERY: db.bioinf_mongo_examen.find({$or: [{"method_of_admission": "TABLET"},{"method_of_admission": "BUCCAL"},{"method_of_admission": "SUBLINGUAL"}]},{drug: 1}).length()
+
+-----------------------------------------------------------------
+
+2: Give the number of medicines that have side effect in more than 12% of cases.
+
+= 12 resultaten gevonden.
+
+QUERY: db.bioinf_mongo_examen.find({"percentage_of_side_effects": {$gt: 12}}).length()
+
+-----------------------------------------------------------------
+
+3: Give the names of the companies that produce medicines that on average cause side effect in more than 10% of cases? sort your results according todescreasing percentage of side effects.
+
+=
+
+QUERY: db.bioinf_mongo_examen.aggregate({}).sort("percentage_of_side_effect": -1) 
+
+-----------------------------------------------------------------
+
+4: Specify the lower and upper limits of the percentage of side effects of medicines wihtin companies that produce more than 1 drug.
+
+=
+
+QUERY: 
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
