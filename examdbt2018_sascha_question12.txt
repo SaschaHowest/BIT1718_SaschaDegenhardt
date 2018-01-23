@@ -1,0 +1,31 @@
+#////////////////////////////////////////////////////////////////
+#		Exam Database technology: question 12		/
+#////////////////////////////////////////////////////////////////
+
+
+1: What is the mapping location of the variant rs4224828 in the mouse?
+
+RAW:
+<data name="rs4224828" MAF="" ambiguity="Y" ancestral_allele="" minor_allele="" most_severe_consequence="3_prime_UTR_variant" source="Variants (including SNPs and indels) imported from dbSNP" var_class="SNP">
+    <evidence>Multiple_observations</evidence>
+    <evidence>Frequency</evidence>
+    <mappings allele_string="T/C" assembly_name="GRCm38" coord_system="chromosome" end="136443949" location="4:136443949-136443949" seq_region_name="4" start="136443949" strand="1" />
+
+Location: 4:136443949-136443949
+
+CURL: curl 'http://rest.ensembl.org/variation/mouse/rs4224828?' -H 'Content-type:text/xml'
+
+--------------------------------
+
+2: Give the first 100 bases of the genomic fasta sequence of the notch1 gene in the mouse.
+
+- Opzoeken van ID van Notch1 gen: ENSMUSG00000026923
+CURL: curl 'http://rest.ensembl.org/xrefs/symbol/mouse/Notch1?' -H 'Content-type:application/json'
+
+- Opzoeken van sequence (eerste 100bp): CTCCTGTGTGTTCAGGCACAAGCTGGAATGCAGACCCCATTGCTCTCCTTGGCTGGAGCAACAACGGAGCTCTGCTTTCTGCCTGCCTCAGTCCTGGCCT
+CURL: curl 'http://rest.ensembl.org/sequence/id/ENSMUSG00000026923?start=1;end=100' -H 'Content-type:text/plain'
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
