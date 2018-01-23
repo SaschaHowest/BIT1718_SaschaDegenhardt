@@ -23,7 +23,7 @@ QUERY: db.bioinf_mongo_examen.find({"percentage_of_side_effects": {$gt: 12}}).le
 
 =
 
-QUERY: 
+QUERY: db.bioinf_mongo_examen.aggregate({}).sort("percentage_of_side_effect": -1) 
 
 -----------------------------------------------------------------
 
